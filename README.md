@@ -4,7 +4,7 @@ Boilerplate serverless function to enable backorder functionality for products w
 
 ## What does this application do?
 
-The application is using BigCommerce webhooks to send product data whenever a product is created, updated or deleted to a serverless function that send the data to Algolia
+The application is using BigCommerce webhooks to send Inventory data whenever a inventory has updated to a serverless function to determine if the product should accept back orders.
 
 ## Contributing
 
@@ -55,7 +55,7 @@ You will get an API endpoint back, you will use this when you set up your webhoo
 
 ```
 endpoints:
-  POST - https://{XXXXXX}.execute-api.us-east-1.amazonaws.com/dev/algolia
+  POST - https://{XXXXXX}.execute-api.us-east-1.amazonaws.com/dev/invetoryManager
 ```
 
 Now in postman create the webhook to send order created to endpoints
