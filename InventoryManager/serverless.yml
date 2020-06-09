@@ -1,0 +1,16 @@
+service: aws-nodejs
+provider:
+  name: aws
+  runtime: nodejs10.x
+functions:
+  inventoryManager:
+    handler: handler.inventoryManager
+    environment:
+      STORE_HASH: 6tymb0smui
+      BC_CLIENT: c89cb1mukq68rfk8ooq90kq4fewnn27
+      BC_TOKEN: phsmqea7kstks4susl0860xmb4dqfkx
+    events:
+      - http:
+          path: invetoryManager
+          method: post
+          cors: true
