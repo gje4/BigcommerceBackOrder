@@ -67,7 +67,7 @@ curl --location --request POST 'https://api.bigcommerce.com/stores/{STORE HASH}/
 --header 'X-Auth-Token: YYYYYY' \
 --data-raw '{
  "scope": "store/product/*",
- "destination": "https://ZZZZZ.execute-api.us-east-1.amazonaws.com/dev/algolia",
+ "destination": "https://ZZZZZ.execute-api.us-east-1.amazonaws.com/dev/invetoryManager",
  "is_active": true
 }'
 ```
