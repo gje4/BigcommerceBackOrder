@@ -17,13 +17,12 @@ async function getProductData(productId) {
   return productData;
 }
 
-async function updateProductData(productId) {
+async function updateProductData(productId, availability) {
   // https://developer.bigcommerce.com/api-reference/store-management/catalog/products/updateproduct
-  // CREATE product
+  // Update product
   var productUpdate = {
     preorder_message: "Back Order",
-    availability: "preorder",
-    inventory_tracking: "none"
+    availability: availability
   };
   const options = {
     method: "PUT",
@@ -48,11 +47,13 @@ module.exports.inventoryManager = async event => {
   console.log("data", data);
   const productDataRaw = await getProductData(inventoryData.data.id);
   const productData = JSON.parse(productDataRaw);
+
+  //TODO more logic around wanting to do back order for a product
   if (productData.data.inventory_level == 0) {
     console.log("make pre order");
-    await updateProductData(inventoryData.data.id);
+    await updateProductData(inventoryData.data.id, "preorder");
   } else {
-    console.log("Do not update product");
+    await updateProductData(inventoryData.data.id, "available");
   }
 
   return {
