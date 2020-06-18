@@ -12,8 +12,6 @@ async function getProductData(productId) {
     }
   };
   var productData = await request(options);
-  console.log("error log 1", productData);
-
   return productData;
 }
 
@@ -36,15 +34,12 @@ async function updateProductData(productId, availability) {
     json: true
   };
   var productData = await request(options);
-  console.log("error log 1", productData);
-
   return productData;
 }
 
 module.exports.inventoryManager = async event => {
   let inventoryData = JSON.parse(event.body);
   const [store, type, data] = inventoryData.scope.split("/");
-  console.log("data", data);
   const productDataRaw = await getProductData(inventoryData.data.id);
   const productData = JSON.parse(productDataRaw);
 
